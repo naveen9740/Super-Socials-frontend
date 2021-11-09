@@ -10,6 +10,7 @@ import {
   School,
   WorkOutline,
 } from "@material-ui/icons";
+import { Users } from "../../dummyData";
 
 export const Sidebar = () => {
   return (
@@ -52,72 +53,22 @@ export const Sidebar = () => {
         <button className="sideBarBtn">Show More</button>
         <hr className="sideBarHr" />
         <ul className="sideBarFriendList">
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Person</span>
-          </li>
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Person</span>
-          </li>{" "}
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Person</span>
-          </li>{" "}
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Person</span>
-          </li>{" "}
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Person</span>
-          </li>{" "}
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Naveen</span>
-          </li>
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Naveen</span>
-          </li>
-          <li className="sideBarFriend">
-            <img
-              src="/assets/person/7.jpeg"
-              alt="profile"
-              className="sidebarProfileImg"
-            />
-            <span className="sideBarFriendName">Naveen</span>
-          </li>
+          {Users.map(({ profilePicture, id, username }) => {
+            return (
+              <li key={id} className="sideBarFriend">
+                <img
+                  src={profilePicture}
+                  alt="profile"
+                  className="sidebarProfileImg"
+                />
+                <span className="sideBarFriendName">{use
+                -rname}</span>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
   );
 };
+-+

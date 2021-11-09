@@ -1,4 +1,5 @@
 import React from "react";
+import { Users } from "../../dummyData";
 import "./Rightbar.css";
 
 export const Rightbar = () => {
@@ -14,50 +15,21 @@ export const Rightbar = () => {
         <img src="/assets/adv.jfif" alt="" className="rightBarAd" />
         <h4 className="rightBarTitle">Online Friends</h4>
         <ul className="rightBarFriendsList">
-          <li className="rightBarFriend">
-            <div className="rightBarImgContainer">
-              <img
-                className="rightBarProfileImg"
-                src="/assets/person/3.jpeg"
-                alt=""
-              />
-              <span className="rightBarOnline"></span>
-            </div>
-            <div className="rightBarUserName">Naveen Kamath</div>
-          </li>
-          <li className="rightBarFriend">
-            <div className="rightBarImgContainer">
-              <img
-                className="rightBarProfileImg"
-                src="/assets/person/3.jpeg"
-                alt=""
-              />
-              <span className="rightBarOnline"></span>
-            </div>
-            <div className="rightBarUserName">Naveen Kamath</div>
-          </li>
-          <li className="rightBarFriend">
-            <div className="rightBarImgContainer">
-              <img
-                className="rightBarProfileImg"
-                src="/assets/person/3.jpeg"
-                alt=""
-              />
-              <span className="rightBarOnline"></span>
-            </div>
-            <div className="rightBarUserName">Naveen Kamath</div>
-          </li>
-          <li className="rightBarFriend">
-            <div className="rightBarImgContainer">
-              <img
-                className="rightBarProfileImg"
-                src="/assets/person/3.jpeg"
-                alt=""
-              />
-              <span className="rightBarOnline"></span>
-            </div>
-            <div className="rightBarUserName">Naveen Kamath</div>
-          </li>
+          {Users.map(({ id, profilePicture, username }) => {
+            return (
+              <li key={id} className="rightBarFriend">
+                <div className="rightBarImgContainer">
+                  <img
+                    className="rightBarProfileImg"
+                    src={profilePicture}
+                    alt=""
+                  />
+                  <span className="rightBarOnline"></span>
+                </div>
+                <div className="rightBarUserName">{username}</div>
+              </li>
+            );
+          })}
         </ul>
       </div>
     </div>
