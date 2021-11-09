@@ -59,6 +59,42 @@
   right: 0px;
   border: 2px solid white;
 }
+.rightBarInfo {
+  margin-bottom: 30px;
+}
+.rightBarInfoItem {
+  margin-bottom: 10px;
+}
+.rightBarInfoKey {
+  font-weight: 500;
+  color: #555;
+}
+.rightBarInfoValue {
+  color: rgb(197, 179, 179);
+  margin-right: 15px;
+  font-weight: 400;
+}
 .rightBarUserName {
   font-weight: 500;
+}
+
+.rightBarFollowings {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.rightBarFollowing {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+.rightBarFollowing > div {
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+.rightBarFollowingImg {
+  height: 100px;
+  width: 100px;
+  /* border-radius: 50%; */
+  object-fit: cover;
 }

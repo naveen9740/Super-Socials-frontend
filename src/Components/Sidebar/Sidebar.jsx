@@ -61,8 +61,7 @@ export const Sidebar = () => {
                   alt="profile"
                   className="sidebarProfileImg"
                 />
-                <span className="sideBarFriendName">{use
-                -rname}</span>
+                <span className="sideBarFriendName">{username}</span>
               </li>
             );
           })}
@@ -71,4 +70,3 @@ export const Sidebar = () => {
     </div>
   );
 };
--+
