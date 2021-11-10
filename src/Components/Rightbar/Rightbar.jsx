@@ -3,6 +3,8 @@ import { Users } from "../../dummyData";
 import "./Rightbar.css";
 
 export const Rightbar = ({ profile }) => {
+  const link = process.env.PORT || "http://localhost:3000/";
+
   const HomeRightBar = () => {
     return (
       <>
@@ -21,7 +23,7 @@ export const Rightbar = ({ profile }) => {
                 <div className="rightBarImgContainer">
                   <img
                     className="rightBarProfileImg"
-                    src={profilePicture}
+                    src={link + profilePicture}
                     alt=""
                   />
                   <span className="rightBarOnline"></span>

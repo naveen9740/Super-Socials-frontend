@@ -13,6 +13,8 @@ import {
 import { Users } from "../../dummyData";
 
 export const Sidebar = () => {
+  const link = process.env.PORT || "http://localhost:3000/";
+
   return (
     <div className="sideBar">
       <div className="sideBarWrapper">
@@ -57,7 +59,7 @@ export const Sidebar = () => {
             return (
               <li key={id} className="sideBarFriend">
                 <img
-                  src={profilePicture}
+                  src={link + profilePicture}
                   alt="profile"
                   className="sidebarProfileImg"
                 />

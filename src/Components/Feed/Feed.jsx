@@ -5,6 +5,7 @@ import "./Feed.css";
 import { Posts } from "../../dummyData";
 
 export const Feed = () => {
+  const link = process.env.PORT || "http://localhost:3000/";
   return (
     <div className="feed">
       <div className="feedWrapper">
@@ -15,7 +16,7 @@ export const Feed = () => {
             <Post
               key={id}
               desc={desc}
-              photo={photo}
+              photo={link + photo}
               date={date}
               like={like}
               comment={comment}

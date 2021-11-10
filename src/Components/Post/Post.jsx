@@ -6,13 +6,17 @@ import { Users } from "../../dummyData";
 export const Post = ({ desc, photo, date, like, comment, userId }) => {
   const [likePost, setLikePost] = useState(like);
   const [isLiked, setIsLiked] = useState(false);
+  const link = process.env.PORT || "http://localhost:3000/";
+
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
             <img
-              src={Users.filter((u) => u.id === userId)[0].profilePicture}
+              src={
+                link + Users.filter((u) => u.id === userId)[0].profilePicture
+              }
               alt=""
               className="postProfileImg"
             />

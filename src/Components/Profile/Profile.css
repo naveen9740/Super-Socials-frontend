@@ -35,7 +35,8 @@
   font-size: 24px;
 }
 .profileInfoDesc {
-  font-weight: 300;
+  font-weight: 350;
+  margin-top: -20px;
 }
 .profileRightBottom {
   display: flex;
