@@ -1,29 +1,41 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Post.css";
 import { MoreVert } from "@material-ui/icons";
-import { Users } from "../../dummyData";
+import axios from "axios";
+import { format } from "timeago.js";
+import { Link } from "react-router-dom";
 
-export const Post = ({ desc, photo, date, like, comment, userId }) => {
-  const [likePost, setLikePost] = useState(like);
+export const Post = ({ desc, photo, createdAt, likes, comment, userId }) => {
+  const [likePost, setLikePost] = useState(likes.length);
   const [isLiked, setIsLiked] = useState(false);
+  const [{ profilePicture, username }, setUser] = useState({});
+
   const link = process.env.PORT || "http://localhost:3000/";
+
+  useEffect(() => {
+    (async () => {
+      const response = await axios.get(`/users?userId=${userId}`);
+      setUser(response.data.other);
+    })();
+  }, [userId]);
 
   return (
     <div className="post">
       <div className="postWrapper">
         <div className="postTop">
           <div className="postTopLeft">
-            <img
-              src={
-                link + Users.filter((u) => u.id === userId)[0].profilePicture
-              }
-              alt=""
-              className="postProfileImg"
-            />
-            <span className="postUserName">
-              {Users.filter((u) => u.id === userId)[0].username}
-            </span>
-            <span className="postDate">{date}</span>
+            <Link
+              to={`/profile/${username}`}
+              style={{ textDecoration: "none" }}
+            >
+              <img
+                src={profilePicture || link + "assets/person/noAvatar.png"}
+                alt=""
+                className="postProfileImg"
+              />
+            </Link>
+            <span className="postUserName">{username}</span>
+            <span className="postDate">{format(createdAt)}</span>
           </div>
           <div className="postTopRight">
             <MoreVert />
@@ -45,7 +57,7 @@ export const Post = ({ desc, photo, date, like, comment, userId }) => {
               }}
             />
             <img className="likeIcon" src="/assets/heart.png" alt="" />
-            <span className="likeCounter">{likePost}</span>
+            <span className="likeCounter">{likePost} people like it</span>
           </div>
           <div className="postBottomRight">
             <span className="postCommentText">{comment} comments</span>

@@ -2,14 +2,13 @@ import React from "react";
 import { Users } from "../../dummyData";
 import "./Rightbar.css";
 
-export const Rightbar = ({ profile }) => {
+export const Rightbar = ({ user }) => {
   const link = process.env.PORT || "http://localhost:3000/";
-
   const HomeRightBar = () => {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src="assets/gift.png" alt="" />
+          <img className="birthdayImg" src={`${link}assets/gift.png`} alt="" />
           <span className="birthdayText">
             <b>Naveen</b> and <b>3 other friends</b> have a birthday Today
           </span>
@@ -43,15 +42,21 @@ export const Rightbar = ({ profile }) => {
         <div className="rightBarInfo">
           <div className="rightBarInfoItem">
             <span className="rightBarInfoValue">City:</span>
-            <span className="rightBarInfoKey">NewYork</span>
+            <span className="rightBarInfoKey">{user.city}</span>
           </div>
           <div className="rightBarInfoItem">
             <span className="rightBarInfoValue">From:</span>
-            <span className="rightBarInfoKey">India</span>
+            <span className="rightBarInfoKey">{user.from}</span>
           </div>
           <div className="rightBarInfoItem">
             <span className="rightBarInfoValue">Relationship:</span>
-            <span className="rightBarInfoKey">Single</span>
+            <span className="rightBarInfoKey">
+              {user.relationship === 1
+                ? "Single"
+                : user.relationship === 2
+                ? "Married"
+                : "-"}
+            </span>
           </div>
         </div>
         <h4 className="rightBarFollowings">User Friends</h4>
@@ -111,7 +116,7 @@ export const Rightbar = ({ profile }) => {
   return (
     <div className="rightBar">
       <div className="rightBarWrapper">
-        {profile ? <ProfileRightBar /> : <HomeRightBar />}
+        {user ? <ProfileRightBar /> : <HomeRightBar />}
       </div>
     </div>
   );

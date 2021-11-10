@@ -1,24 +1,35 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Post } from "../Post/Post";
 import { Share } from "../Share/Share";
 import "./Feed.css";
-import { Posts } from "../../dummyData";
+// import { Posts } from "../../dummyData";
+import axios from "axios";
 
-export const Feed = () => {
+export const Feed = ({ username }) => {
   const link = process.env.PORT || "http://localhost:3000/";
+  const [posts, setPosts] = useState([]);
+  useEffect(() => {
+    (async () => {
+      const response = username
+        ? await axios.get(`/posts/profile/${username}`)
+        : await axios.get("posts/timeline/6188e76d11ff875c8ed1523d");
+      setPosts(response.data);
+      console.log();
+    })();
+  }, [username]);
+
   return (
     <div className="feed">
       <div className="feedWrapper">
         <Share />
-
-        {Posts.map(({ id, desc, photo, date, like, userId, comment }) => {
+        {posts.map(({ _id, desc, img, likes, userId, comment, createdAt }) => {
           return (
             <Post
-              key={id}
+              key={_id}
               desc={desc}
-              photo={link + photo}
-              date={date}
-              like={like}
+              photo={link + img}
+              createdAt={createdAt}
+              likes={likes}
               comment={comment}
               userId={userId}
             />
