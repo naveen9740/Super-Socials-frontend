@@ -4,11 +4,27 @@ import { MoreVert } from "@material-ui/icons";
 import axios from "axios";
 import { format } from "timeago.js";
 import { Link } from "react-router-dom";
+import { useAuth } from "../../Context/AuthContext";
 
-export const Post = ({ desc, photo, createdAt, likes, comment, userId }) => {
+export const Post = ({
+  _id,
+  desc,
+  photo,
+  createdAt,
+  likes,
+  comment,
+  userId,
+}) => {
   const [likePost, setLikePost] = useState(likes.length);
   const [isLiked, setIsLiked] = useState(false);
   const [{ profilePicture, username }, setUser] = useState({});
+  const {
+    user: { user },
+  } = useAuth();
+
+  useEffect(() => {
+    setIsLiked(likes.includes(user._id));
+  }, [user._id, likes]);
 
   const link = process.env.PORT || "http://localhost:3000/";
 
@@ -29,7 +45,11 @@ export const Post = ({ desc, photo, createdAt, likes, comment, userId }) => {
               style={{ textDecoration: "none" }}
             >
               <img
-                src={profilePicture || link + "assets/person/noAvatar.png"}
+                src={
+                  profilePicture
+                    ? link + profilePicture
+                    : link + "assets/person/noAvatar.png"
+                }
                 alt=""
                 className="postProfileImg"
               />
@@ -51,9 +71,18 @@ export const Post = ({ desc, photo, createdAt, likes, comment, userId }) => {
               className="likeIcon"
               src="/assets/like.png"
               alt=""
-              onClick={() => {
-                setIsLiked(!isLiked);
-                return setLikePost(isLiked ? likePost - 1 : likePost + 1);
+              onClick={async () => {
+                // console.log({ userId });
+
+                try {
+                  await axios.put(`posts/${_id}/like`, {
+                    userId: user._id,
+                  });
+                  setLikePost(isLiked ? likePost - 1 : likePost + 1);
+                  setIsLiked(!isLiked);
+                } catch (error) {
+                  console.log({ error });
+                }
               }}
             />
             <img className="likeIcon" src="/assets/heart.png" alt="" />

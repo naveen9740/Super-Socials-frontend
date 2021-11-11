@@ -1,13 +1,27 @@
 import React from "react";
 import "./Share.css";
 import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import { useAuth } from "../../Context/AuthContext";
 
 export const Share = () => {
+  const {
+    user: { user },
+  } = useAuth();
+
+  const link = process.env.PORT || "http://localhost:3000/";
   return (
     <div className="share">
       <div className="shareWrapper">
         <div className="shareTop">
-          <img className="shareProfileImg" src="/assets/person/1.jpeg" alt="" />
+          <img
+            className="shareProfileImg"
+            src={
+              user.username
+                ? link + user.profilePicture
+                : link + "assets/person/noCover.png"
+            }
+            alt=""
+          />
           <input
             placeholder="What's in your Mind Naveen?"
             className="shareInput"

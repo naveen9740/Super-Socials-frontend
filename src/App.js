@@ -7,7 +7,6 @@ import { useAuth } from "./Context/AuthContext";
 
 const App = () => {
   const { user } = useAuth();
-  console.log({ user });
   return (
     <div>
       <Routes>

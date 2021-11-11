@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 export const Login = () => {
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, error, dispatch } = useAuth();
+  const { isFetching, dispatch } = useAuth();
 
   return (
     <div className="login">
