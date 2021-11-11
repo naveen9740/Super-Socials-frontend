@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import { useParams } from "react-router";
 import { Feed } from "../Feed/Feed";
 import { Rightbar } from "../Rightbar/Rightbar";
 import { Sidebar } from "../Sidebar/Sidebar";
@@ -7,12 +8,15 @@ import { Topbar } from "../Topbar/Topbar";
 import "./Profile.css";
 export const Profile = () => {
   const [user, setUser] = useState({});
+  const link = process.env.PORT || "http://localhost:3000/";
+  const { username } = useParams();
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`/users?username=raghu`);
+      const response = await axios.get(`/users?username=${username}`);
       setUser(response.data.other);
     })();
-  }, []);
+  }, [username]);
+
   return (
     <>
       <Topbar />
@@ -22,12 +26,12 @@ export const Profile = () => {
           <div className="profileRightTop">
             <div className="profileCover">
               <img
-                src={user.coverPicture}
+                src={user.coverPicture || link + "assets/person/noCover.png"}
                 alt=""
                 className="profileCoverImage"
               />
               <img
-                src={user.profilePicture}
+                src={user.profilePicture || link + "assets/person/noAvatar.png"}
                 alt=""
                 className="profileUserImage"
               />
@@ -38,7 +42,7 @@ export const Profile = () => {
             </div>
           </div>
           <div className="profileRightBottom">
-            <Feed username="raghu" />
+            <Feed username={username} />
             <Rightbar user={user} />
           </div>
         </div>
