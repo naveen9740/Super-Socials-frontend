@@ -1,26 +1,51 @@
 import { createContext, useContext, useReducer } from "react";
-// import AuthReducer from "./AuthReducer";
+
+let getUser = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
-  user: null,
+  user: getUser ? getUser : null,
   isFetching: false,
   error: false,
-  // number: 0,
 };
 export const AuthContext = createContext(initialState);
 export const AuthContextProvider = ({ children }) => {
   const AuthReducer = (state, action) => {
     switch (action.type) {
-      case "login_start":
+      case "LOGIN_START":
         return {
           user: null,
           isFetching: true,
           error: false,
         };
-      case "login_success":
+      case "LOGIN_SUCCESS":
+        localStorage.setItem("user", JSON.stringify(action.payload));
         return { user: action.payload, isFetching: false, error: false };
-      case "login_failure":
+      case "LOGIN_FAILURE":
         return { user: null, isFetching: false, error: action.payload };
+      case "FOLLOW":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            user: {
+              ...state.user.user,
+              following: [...state.user.user.following, action.payload],
+            },
+          },
+        };
+      case "UNFOLLOW":
+        return {
+          ...state,
+          user: {
+            ...state.user,
+            user: {
+              ...state.user.user,
+              following: state.user.user.following.filter(
+                (following) => following !== action.payload
+              ),
+            },
+          },
+        };
       default:
         break;
     }

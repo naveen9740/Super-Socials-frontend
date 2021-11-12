@@ -16,14 +16,19 @@ export const Feed = ({ username }) => {
       const response = username
         ? await axios.get(`/posts/profile/${username}`)
         : await axios.get(`posts/timeline/${user._id}`);
-      setPosts(response.data);
+      setPosts(
+        response.data.sort(
+          (p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)
+        )
+      );
     })();
   }, [username, user._id]);
 
   return (
     <div className="feed">
       <div className="feedWrapper">
-        <Share />
+        {username !== user.username && <Share />}
+
         {posts.map(({ _id, desc, img, likes, userId, comment, createdAt }) => {
           return (
             <Post

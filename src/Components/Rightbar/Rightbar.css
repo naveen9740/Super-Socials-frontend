@@ -98,3 +98,16 @@
   /* border-radius: 50%; */
   object-fit: cover;
 }
+.rightBarFollowBtn {
+  display: flex;
+  margin-bottom: 10px;
+  border: none;
+  background-color: #1872f2;
+  color: white;
+  border-radius: 5px;
+  padding: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  font-weight: 500;
+  align-items: center;
+}

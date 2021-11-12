@@ -6,7 +6,8 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { useAuth } from "./Context/AuthContext";
 
 const App = () => {
-  const { user } = useAuth();
+  let { user } = useAuth();
+
   return (
     <div>
       <Routes>

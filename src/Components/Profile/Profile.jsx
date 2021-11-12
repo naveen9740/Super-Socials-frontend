@@ -27,15 +27,18 @@ export const Profile = () => {
             <div className="profileCover">
               <img
                 src={
-                  link + user.coverPicture || link + "assets/person/noCover.png"
+                  user.coverPicture
+                    ? link + user.coverPicture
+                    : link + "assets/person/noCover.png"
                 }
                 alt=""
                 className="profileCoverImage"
               />
               <img
                 src={
-                  link + user.profilePicture ||
-                  link + "assets/person/noAvatar.png"
+                  user.profilePicture
+                    ? link + user.profilePicture
+                    : link + "assets/person/noAvatar.png"
                 }
                 alt=""
                 className="profileUserImage"

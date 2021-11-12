@@ -25,15 +25,16 @@ export const Login = () => {
             onSubmit={(e) => {
               e.preventDefault();
               (async () => {
-                dispatch({ type: "login_start" });
+                dispatch({ type: "LOGIN_START" });
                 try {
                   const response = await axios.post("auth/login", {
                     email: email.current.value,
                     password: password.current.value,
                   });
-                  dispatch({ type: "login_success", payload: response.data });
+                  console.log(response.data);
+                  dispatch({ type: "LOGIN_SUCCESS", payload: response.data });
                 } catch (error) {
-                  dispatch({ type: "login_failure", payload: error });
+                  dispatch({ type: "LOGIN_FAILURE", payload: error });
                 }
               })();
               email.current.value = "";
@@ -80,8 +81,8 @@ export const Login = () => {
           </form>
           <button
             onClick={() => {
-              document.getElementById("email").value = "raghu@gmail.com";
-              document.getElementById("password").value = "raghu123";
+              document.getElementById("email").value = "test@gmail.com";
+              document.getElementById("password").value = "naveenkamath";
             }}
           >
             Autofill with Test Credentials

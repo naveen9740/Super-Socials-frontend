@@ -73,11 +73,13 @@ export const Post = ({
               alt=""
               onClick={async () => {
                 // console.log({ userId });
-
+                console.log({ userId: user._id, _id });
                 try {
-                  await axios.put(`posts/${_id}/like`, {
+                  const res = await axios.put(`posts/${_id}/like`, {
                     userId: user._id,
                   });
+                  console.log({ res: res.data });
+
                   setLikePost(isLiked ? likePost - 1 : likePost + 1);
                   setIsLiked(!isLiked);
                 } catch (error) {

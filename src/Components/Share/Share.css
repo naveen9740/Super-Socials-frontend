@@ -61,3 +61,17 @@
   color: white;
   font-size: 18px;
 }
+.shareImgContainer {
+  padding: 0px 20px;
+  position: relative;
+}
+.shareImg {
+  width: 100%;
+  object-fit: cover;
+}
+.shareImgCancel {
+  position: absolute;
+  top: 0;
+  right: 20px;
+  cursor: pointer;
+}

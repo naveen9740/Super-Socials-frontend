@@ -1,6 +1,12 @@
 import React, { useRef, useState } from "react";
 import "./Share.css";
-import { PermMedia, Label, Room, EmojiEmotions } from "@material-ui/icons";
+import {
+  PermMedia,
+  Label,
+  Room,
+  EmojiEmotions,
+  Cancel,
+} from "@material-ui/icons";
 import { useAuth } from "../../Context/AuthContext";
 import axios from "axios";
 
@@ -12,8 +18,6 @@ export const Share = () => {
   } = useAuth();
   const desc = useRef();
   const [file, setFile] = useState(null);
-  console.log({ file });
-
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -34,6 +38,12 @@ export const Share = () => {
           />
         </div>
         <hr className="shareHr" />
+        {file && (
+          <div className="shareImgContainer">
+            <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
+            <Cancel onClick={() => setFile(null)} className="shareImgCancel" />
+          </div>
+        )}
         <form
           className="shareBottom"
           onSubmit={async (e) => {

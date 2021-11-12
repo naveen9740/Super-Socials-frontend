@@ -7,12 +7,12 @@ export const Users = [
   {
     id: 2,
     profilePicture: "assets/person/2.jpeg",
-    username: "Tanay pratap",
+    username: "MsDhoni",
   },
   {
     id: 3,
     profilePicture: "assets/person/3.jpeg",
-    username: "Alex Durden",
+    username: "Tanay Pratap",
   },
   {
     id: 4,
@@ -32,12 +32,12 @@ export const Users = [
   {
     id: 7,
     profilePicture: "assets/person/7.jpeg",
-    username: "Msd",
+    username: "alex",
   },
   {
     id: 8,
     profilePicture: "assets/person/8.jpeg",
-    username: "Aman d",
+    username: "Aman",
   },
   {
     id: 9,
@@ -47,7 +47,7 @@ export const Users = [
   {
     id: 10,
     profilePicture: "assets/person/10.jpeg",
-    username: "Safak Kocaoglu",
+    username: "Gannedy",
   },
 ];
 
