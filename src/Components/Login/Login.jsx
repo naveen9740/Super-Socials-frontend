@@ -9,6 +9,7 @@ export const Login = () => {
   const email = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useAuth();
+  const backend = "https://socialmediabackend2.herokuapp.com/";
 
   return (
     <div className="login">
@@ -27,7 +28,7 @@ export const Login = () => {
               (async () => {
                 dispatch({ type: "LOGIN_START" });
                 try {
-                  const response = await axios.post("auth/login", {
+                  const response = await axios.post(`${backend}auth/login`, {
                     email: email.current.value,
                     password: password.current.value,
                   });

@@ -21,6 +21,7 @@ export const Post = ({
   const {
     user: { user },
   } = useAuth();
+  const backend = "https://socialmediabackend2.herokuapp.com/";
 
   useEffect(() => {
     setIsLiked(likes.includes(user._id));
@@ -30,7 +31,7 @@ export const Post = ({
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`/users?userId=${userId}`);
+      const response = await axios.get(`${backend}users?userId=${userId}`);
       setUser(response.data.other);
     })();
   }, [userId]);
@@ -75,7 +76,7 @@ export const Post = ({
                 // console.log({ userId });
                 console.log({ userId: user._id, _id });
                 try {
-                  const res = await axios.put(`posts/${_id}/like`, {
+                  const res = await axios.put(`${backend}posts/${_id}/like`, {
                     userId: user._id,
                   });
                   console.log({ res: res.data });

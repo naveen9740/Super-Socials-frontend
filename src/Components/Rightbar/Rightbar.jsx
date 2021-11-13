@@ -8,6 +8,8 @@ import { Add, Remove } from "@material-ui/icons";
 
 export const Rightbar = ({ user }) => {
   const link = process.env.PORT || "http://localhost:3000/";
+  const backend = "https://socialmediabackend2.herokuapp.com/";
+
   const [friends, setFriends] = useState([]);
   const {
     user: { user: currentUser },
@@ -25,7 +27,9 @@ export const Rightbar = ({ user }) => {
   useEffect(() => {
     (async () => {
       try {
-        const friendList = await axios.get(`/users/friends/${user._id}`);
+        const friendList = await axios.get(
+          `${backend}users/friends/${user._id}`
+        );
         setFriends(friendList.data);
       } catch (error) {
         console.log(error.message);
@@ -78,12 +82,12 @@ export const Rightbar = ({ user }) => {
             onClick={async () => {
               try {
                 if (followed) {
-                  await axios.put(`/users/${user?._id}/unfollow`, {
+                  await axios.put(`${backend}users/${user?._id}/unfollow`, {
                     userId: currentUser._id,
                   });
                   dispatch({ type: "FOLLOW", payload: user?._id });
                 } else {
-                  await axios.put(`/users/${user?._id}/follow`, {
+                  await axios.put(`${backend}users/${user?._id}/follow`, {
                     userId: currentUser._id,
                   });
                   dispatch({ type: "FOLLOW", payload: user?._id });

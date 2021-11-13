@@ -11,7 +11,7 @@ export const Register = () => {
   const password = useRef();
   const confirmPassword = useRef();
   const navigate = useNavigate();
-
+  const backend = "https://socialmediabackend2.herokuapp.com/";
   const { isFetching } = useAuth();
 
   return (
@@ -37,7 +37,10 @@ export const Register = () => {
                   password: password.current.value,
                 };
                 try {
-                  const response = await axios.post("/auth/register", user);
+                  const response = await axios.post(
+                    `${backend}auth/register`,
+                    user
+                  );
                   console.log({ response });
                   navigate("/login");
                 } catch (error) {

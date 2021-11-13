@@ -10,9 +10,12 @@ export const Profile = () => {
   const [user, setUser] = useState({});
   const link = process.env.PORT || "http://localhost:3000/";
   const { username } = useParams();
+  const backend = "https://socialmediabackend2.herokuapp.com/";
+
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`/users?username=${username}`);
+      const response = await axios.get(`${backend}users?username=${username}`);
+      console.log(response);
       setUser(response.data.other);
     })();
   }, [username]);
@@ -27,7 +30,7 @@ export const Profile = () => {
             <div className="profileCover">
               <img
                 src={
-                  user.coverPicture
+                  user?.coverPicture
                     ? link + user.coverPicture
                     : link + "assets/person/noCover.png"
                 }
@@ -36,7 +39,7 @@ export const Profile = () => {
               />
               <img
                 src={
-                  user.profilePicture
+                  user?.profilePicture
                     ? link + user.profilePicture
                     : link + "assets/person/noAvatar.png"
                 }
@@ -45,8 +48,12 @@ export const Profile = () => {
               />
             </div>
             <div className="profileInfo">
-              <h4 className="profileInfoName">{user.username}</h4>
-              <span className="profileInfoDesc">{user.desc}</span>
+              <h4 className="profileInfoName">
+                {user?.username === undefined
+                  ? "Dummy User :)"
+                  : user?.username}
+              </h4>
+              <span className="profileInfoDesc">{user?.desc}</span>
             </div>
           </div>
           <div className="profileRightBottom">
