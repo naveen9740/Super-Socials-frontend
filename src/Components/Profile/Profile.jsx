@@ -8,7 +8,6 @@ import { Topbar } from "../Topbar/Topbar";
 import "./Profile.css";
 export const Profile = () => {
   const [user, setUser] = useState({});
-  const link = process.env.PORT || "http://localhost:3000/";
   const { username } = useParams();
   const backend = "https://socialmediabackend2.herokuapp.com/";
 
@@ -31,8 +30,8 @@ export const Profile = () => {
               <img
                 src={
                   user?.coverPicture
-                    ? link + user.coverPicture
-                    : link + "assets/person/noCover.png"
+                    ? `https://super-social.netlify.app/${user.coverPicture}`
+                    : "https://super-social.netlify.app/assets/person/noCover.png"
                 }
                 alt=""
                 className="profileCoverImage"
@@ -40,8 +39,8 @@ export const Profile = () => {
               <img
                 src={
                   user?.profilePicture
-                    ? link + user.profilePicture
-                    : link + "assets/person/noAvatar.png"
+                    ? `https://super-social.netlify.app/${user.profilePicture}`
+                    : "https://super-social.netlify.app/assets/person/noAvatar.png"
                 }
                 alt=""
                 className="profileUserImage"

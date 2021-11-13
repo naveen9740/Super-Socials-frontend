@@ -11,7 +11,6 @@ import { useAuth } from "../../Context/AuthContext";
 import axios from "axios";
 
 export const Share = () => {
-  const link = process.env.PORT || "http://localhost:3000/";
   const backend = "https://socialmediabackend2.herokuapp.com/";
 
   const {
@@ -27,8 +26,8 @@ export const Share = () => {
             className="shareProfileImg"
             src={
               user.username
-                ? link + user.profilePicture
-                : link + "assets/person/noCover.png"
+                ? `https://super-social.netlify.app/${user.profilePicture}`
+                : `https://super-social.netlify.app/assets/person/noCover.png`
             }
             alt=""
           />

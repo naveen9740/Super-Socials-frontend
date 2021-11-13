@@ -14,7 +14,6 @@ export const Topbar = () => {
     user: { user },
     dispatch,
   } = useAuth();
-  const link = process.env.PORT || "http://localhost:3000/";
 
   console.log(user);
 
@@ -57,8 +56,8 @@ export const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? link + user.profilePicture
-                : link + "assets/person/noAvatar.png"
+                ? `https://super-social.netlify.app/${user.profilePicture}`
+                : "assets/person/noAvatar.png"
             }
             alt=""
             className="img"
