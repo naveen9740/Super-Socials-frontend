@@ -1,13 +1,22 @@
 import "./Topbar.css";
-import { Search, Person, Chat, Notifications } from "@material-ui/icons";
+import {
+  Search,
+  Person,
+  Chat,
+  Notifications,
+  ExitToApp,
+} from "@material-ui/icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "../../Context/AuthContext";
 
 export const Topbar = () => {
-  const {
+  let {
     user: { user },
+    dispatch,
   } = useAuth();
   const link = process.env.PORT || "http://localhost:3000/";
+
+  console.log(user);
 
   return (
     <div className="topbarContainer">
@@ -55,6 +64,15 @@ export const Topbar = () => {
             className="img"
           />
         </Link>
+        <div
+          className="iconItem"
+          onClick={() => {
+            console.log({ user });
+            return dispatch({ type: "LOGOUT" });
+          }}
+        >
+          <ExitToApp />
+        </div>
       </div>
     </div>
   );

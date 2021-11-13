@@ -12,6 +12,7 @@ import axios from "axios";
 
 export const Share = () => {
   const link = process.env.PORT || "http://localhost:3000/";
+  const backend = "https://socialmediabackend2.herokuapp.com/";
 
   const {
     user: { user },
@@ -60,13 +61,13 @@ export const Share = () => {
               data.append("name", fileName);
               newPost.img = `assets/post/${fileName}`;
               try {
-                await axios.post("/upload", data);
+                await axios.post(`${backend}upload`, data);
               } catch (err) {
                 console.log(err.message);
               }
             }
             try {
-              await axios.post("posts/", newPost);
+              await axios.post(`${backend}posts/`, newPost);
               window.location.reload();
             } catch (error) {
               console.log({ error: error.message });

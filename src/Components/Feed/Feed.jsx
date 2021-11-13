@@ -7,6 +7,7 @@ import { useAuth } from "../../Context/AuthContext";
 
 export const Feed = ({ username }) => {
   const link = process.env.PORT || "http://localhost:3000/";
+  const backend = "https://socialmediabackend2.herokuapp.com/";
   const {
     user: { user },
   } = useAuth();
@@ -14,8 +15,8 @@ export const Feed = ({ username }) => {
   useEffect(() => {
     (async () => {
       const response = username
-        ? await axios.get(`/posts/profile/${username}`)
-        : await axios.get(`posts/timeline/${user._id}`);
+        ? await axios.get(`${backend}posts/profile/${username}`)
+        : await axios.get(`${backend}posts/timeline/${user._id}`);
       setPosts(
         response.data.sort(
           (p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)
