@@ -48,8 +48,8 @@ export const Post = ({
               <img
                 src={
                   profilePicture
-                    ? link + profilePicture
-                    : link + "assets/person/noAvatar.png"
+                    ? `https://super-social.netlify.app/${profilePicture} `
+                    : `https://super-social.netlify.app/assets/person/noAvatar.png`
                 }
                 alt=""
                 className="postProfileImg"
@@ -64,7 +64,11 @@ export const Post = ({
         </div>
         <div className="postCenter">
           <span className="postText">{desc}</span>
-          <img src={photo} alt="" className="postImage" />
+          <img
+            src={`https://super-social.netlify.app/${photo}`}
+            alt=""
+            className="postImage"
+          />
         </div>
         <div className="postBottom">
           <div className="postBottomLeft">

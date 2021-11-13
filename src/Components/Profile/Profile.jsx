@@ -31,8 +31,8 @@ export const Profile = () => {
               <img
                 src={
                   user?.coverPicture
-                    ? link + user.coverPicture
-                    : link + "assets/person/noCover.png"
+                    ? `https://super-social.netlify.app/${user.coverPicture}`
+                    : "https://super-social.netlify.app/assets/person/noCover.png"
                 }
                 alt=""
                 className="profileCoverImage"
@@ -40,8 +40,8 @@ export const Profile = () => {
               <img
                 src={
                   user?.profilePicture
-                    ? link + user.profilePicture
-                    : link + "assets/person/noAvatar.png"
+                    ? `https://super-social.netlify.app/${user.profilePicture}`
+                    : "https://super-social.netlify.app/assets/person/noAvatar.png"
                 }
                 alt=""
                 className="profileUserImage"

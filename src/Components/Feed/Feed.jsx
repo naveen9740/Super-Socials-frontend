@@ -36,7 +36,7 @@ export const Feed = ({ username }) => {
               key={_id}
               _id={_id}
               desc={desc}
-              photo={link + img}
+              photo={img}
               createdAt={createdAt}
               likes={likes}
               comment={comment}

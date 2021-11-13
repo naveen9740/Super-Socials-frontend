@@ -41,7 +41,7 @@ export const Rightbar = ({ user }) => {
     return (
       <>
         <div className="birthdayContainer">
-          <img className="birthdayImg" src={`${link}assets/gift.png`} alt="" />
+          <img className="birthdayImg" src={`/assets/gift.png`} alt="" />
           <span className="birthdayText">
             <b>Naveen</b> and <b>3 other friends</b> have a birthday Today
           </span>
@@ -59,7 +59,7 @@ export const Rightbar = ({ user }) => {
                   <div className="rightBarImgContainer">
                     <img
                       className="rightBarProfileImg"
-                      src={link + profilePicture}
+                      src={profilePicture}
                       alt=""
                     />
                     <span className="rightBarOnline"></span>

@@ -57,8 +57,8 @@ export const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? link + user.profilePicture
-                : link + "assets/person/noAvatar.png"
+                ? user.profilePicture
+                : "assets/person/noAvatar.png"
             }
             alt=""
             className="img"
