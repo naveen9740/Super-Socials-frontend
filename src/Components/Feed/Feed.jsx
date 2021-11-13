@@ -6,7 +6,6 @@ import axios from "axios";
 import { useAuth } from "../../Context/AuthContext";
 
 export const Feed = ({ username }) => {
-  const link = process.env.PORT || "http://localhost:3000/";
   const backend = "https://socialmediabackend2.herokuapp.com/";
   const {
     user: { user },

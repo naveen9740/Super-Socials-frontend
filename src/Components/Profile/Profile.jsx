@@ -8,7 +8,6 @@ import { Topbar } from "../Topbar/Topbar";
 import "./Profile.css";
 export const Profile = () => {
   const [user, setUser] = useState({});
-  const link = process.env.PORT || "http://localhost:3000/";
   const { username } = useParams();
   const backend = "https://socialmediabackend2.herokuapp.com/";
 

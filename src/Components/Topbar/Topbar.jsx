@@ -14,7 +14,6 @@ export const Topbar = () => {
     user: { user },
     dispatch,
   } = useAuth();
-  const link = process.env.PORT || "http://localhost:3000/";
 
   console.log(user);
 

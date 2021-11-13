@@ -27,8 +27,6 @@ export const Post = ({
     setIsLiked(likes.includes(user._id));
   }, [user._id, likes]);
 
-  const link = process.env.PORT || "http://localhost:3000/";
-
   useEffect(() => {
     (async () => {
       const response = await axios.get(`${backend}users?userId=${userId}`);
