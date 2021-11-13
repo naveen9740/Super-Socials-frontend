@@ -56,7 +56,7 @@ export const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? user.profilePicture
+                ? `https://super-social.netlify.app/${user.profilePicture}`
                 : "assets/person/noAvatar.png"
             }
             alt=""

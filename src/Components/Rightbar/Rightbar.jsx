@@ -59,7 +59,7 @@ export const Rightbar = ({ user }) => {
                   <div className="rightBarImgContainer">
                     <img
                       className="rightBarProfileImg"
-                      src={profilePicture}
+                      src={`https://super-social.netlify.app/${profilePicture}`}
                       alt=""
                     />
                     <span className="rightBarOnline"></span>
@@ -136,7 +136,7 @@ export const Rightbar = ({ user }) => {
                   <img
                     src={
                       profilePicture
-                        ? link + profilePicture
+                        ? `https://super-social.netlify.app/${profilePicture}`
                         : link + "/assets/person/noAvatar.jpeg"
                     }
                     alt=""
