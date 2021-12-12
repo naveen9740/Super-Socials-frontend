@@ -5,7 +5,7 @@
 ![App Screenshot](https://i.ibb.co/YpBjdJ7/SUPER2.png)
 ![App Screenshot](https://i.ibb.co/LgtcGK0/SUPER3.png)
 
-## [LIVE DEMO](https://super-social.netlify.app/login)
+## [LIVE DEMO](https://super-social.netlify.app/)
 
 A online social media and social networking service. After registering, Users can create a profile revealing information about themselves. They can post Text, photos and multimedia which are shared with any other users who have agreed to be their "friend" or publicly.
 
