@@ -9,7 +9,7 @@ export const Login = () => {
   const email = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useAuth();
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = "https://magic-shop-backend.herokuapp.com/";
 
   return (
     <div className="login">
