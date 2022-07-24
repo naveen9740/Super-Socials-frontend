@@ -21,7 +21,7 @@ export const Post = ({
   const {
     user: { user },
   } = useAuth();
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
 
   useEffect(() => {
     setIsLiked(likes.includes(user._id));
@@ -29,7 +29,7 @@ export const Post = ({
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`${backend}users?userId=${userId}`);
+      const response = await axios.get(`${backend}/users?userId=${userId}`);
       setUser(response.data.other);
     })();
   }, [userId]);
@@ -46,8 +46,8 @@ export const Post = ({
               <img
                 src={
                   profilePicture
-                    ? `https://super-social.netlify.app/${profilePicture} `
-                    : `https://super-social.netlify.app/assets/person/noAvatar.png`
+                    ? `${process.env.REACT_APP_URL}/${profilePicture} `
+                    : `${process.env.REACT_APP_URL}/assets/person/noAvatar.png`
                 }
                 alt=""
                 className="postProfileImg"
@@ -75,13 +75,10 @@ export const Post = ({
               src="/assets/like.png"
               alt=""
               onClick={async () => {
-                // console.log({ userId });
-                console.log({ userId: user._id, _id });
                 try {
-                  const res = await axios.put(`${backend}posts/${_id}/like`, {
+                  const res = await axios.put(`${backend}/posts/${_id}/like`, {
                     userId: user._id,
                   });
-                  console.log({ res: res.data });
 
                   setLikePost(isLiked ? likePost - 1 : likePost + 1);
                   setIsLiked(!isLiked);

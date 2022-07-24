@@ -9,11 +9,11 @@ import "./Profile.css";
 export const Profile = () => {
   const [user, setUser] = useState({});
   const { username } = useParams();
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
 
   useEffect(() => {
     (async () => {
-      const response = await axios.get(`${backend}users?username=${username}`);
+      const response = await axios.get(`${backend}/users?username=${username}`);
       console.log(response);
       setUser(response.data.other);
     })();
@@ -30,8 +30,8 @@ export const Profile = () => {
               <img
                 src={
                   user?.coverPicture
-                    ? `https://super-social.netlify.app/${user.coverPicture}`
-                    : "https://super-social.netlify.app/assets/person/noCover.png"
+                    ? `${process.env.REACT_APP_URL}/${user.coverPicture}`
+                    : `${process.env.REACT_APP_URL}/assets/person/noCover.png`
                 }
                 alt=""
                 className="profileCoverImage"

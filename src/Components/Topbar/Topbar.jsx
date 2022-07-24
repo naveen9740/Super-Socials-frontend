@@ -15,7 +15,7 @@ export const Topbar = () => {
     dispatch,
   } = useAuth();
 
-  console.log(user);
+  console.log("user", user);
 
   return (
     <div className="topbarContainer">
@@ -56,7 +56,7 @@ export const Topbar = () => {
           <img
             src={
               user.profilePicture
-                ? `https://super-social.netlify.app/${user.profilePicture}`
+                ? `${process.env.REACT_APP_URL}/${user?.profilePicture}`
                 : "assets/person/noAvatar.png"
             }
             alt=""

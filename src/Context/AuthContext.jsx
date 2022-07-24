@@ -1,4 +1,4 @@
-import { createContext, useContext, useReducer } from "react";
+import { createContext, useContext, useReducer, useState } from "react";
 
 let getUser = JSON.parse(localStorage.getItem("user"));
 
@@ -9,6 +9,7 @@ const initialState = {
 };
 export const AuthContext = createContext(initialState);
 export const AuthContextProvider = ({ children }) => {
+  const [result, setResult] = useState();
   const AuthReducer = (state, action) => {
     switch (action.type) {
       case "LOGIN_START":
@@ -23,6 +24,7 @@ export const AuthContextProvider = ({ children }) => {
       case "LOGIN_FAILURE":
         return { user: null, isFetching: false, error: action.payload };
       case "LOGOUT":
+        localStorage.clear();
         return { user: null, isFetching: false, error: false };
       case "FOLLOW":
         return {
@@ -59,6 +61,8 @@ export const AuthContextProvider = ({ children }) => {
         user: value.user,
         isFetching: value.isFetching,
         error: value.error,
+        result,
+        setResult,
         dispatch,
       }}
     >

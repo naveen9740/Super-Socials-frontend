@@ -8,9 +8,10 @@ import { Add, Remove } from "@material-ui/icons";
 
 export const Rightbar = ({ user }) => {
   const link = process.env.PORT || "http://localhost:3000/";
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
 
   const [friends, setFriends] = useState([]);
+  const [users, setUsers] = useState();
   const {
     user: { user: currentUser },
     dispatch,
@@ -28,7 +29,7 @@ export const Rightbar = ({ user }) => {
     (async () => {
       try {
         const friendList = await axios.get(
-          `${backend}users/friends/${user._id}`
+          `${backend}/users/friends/${user._id}`
         );
         setFriends(friendList.data);
       } catch (error) {
@@ -36,6 +37,16 @@ export const Rightbar = ({ user }) => {
       }
     })();
   }, [user?._id]);
+
+  useEffect(async () => {
+    try {
+      const users = await axios.get(`${backend}/users/users`);
+
+      setUsers(users.data.users);
+    } catch (error) {
+      console.log(error.message);
+    }
+  }, []);
 
   const HomeRightBar = () => {
     return (
@@ -47,26 +58,28 @@ export const Rightbar = ({ user }) => {
           </span>
         </div>
         <img src="/assets/adv.jfif" alt="" className="rightBarAd" />
-        <h4 className="rightBarTitle">Online Friends</h4>
+        <h4 className="rightBarTitle">Other Online Friends</h4>
         <ul className="rightBarFriendsList">
-          {Users.map(({ _id, profilePicture, username }) => {
+          {users?.map(({ _id, profilePicture, username }) => {
             return (
-              <Link
-                to={`/profile/${username}`}
-                style={{ color: "black", textDecoration: "none" }}
-              >
-                <li key={_id} className="rightBarFriend">
-                  <div className="rightBarImgContainer">
-                    <img
-                      className="rightBarProfileImg"
-                      src={`https://super-social.netlify.app/${profilePicture}`}
-                      alt=""
-                    />
-                    <span className="rightBarOnline"></span>
-                  </div>
-                  <div className="rightBarUserName">{username}</div>
-                </li>
-              </Link>
+              <>
+                <Link
+                  to={`/profile/${username}`}
+                  style={{ color: "black", textDecoration: "none" }}
+                >
+                  <li key={_id} className="rightBarFriend">
+                    <div className="rightBarImgContainer">
+                      <img
+                        className="rightBarProfileImg"
+                        src={`${process.env.REACT_APP_URL}/${profilePicture}`}
+                        alt=""
+                      />
+                      <span className="rightBarOnline"></span>
+                    </div>
+                    <div className="rightBarUserName">{username}</div>
+                  </li>
+                </Link>
+              </>
             );
           })}
         </ul>
@@ -82,12 +95,12 @@ export const Rightbar = ({ user }) => {
             onClick={async () => {
               try {
                 if (followed) {
-                  await axios.put(`${backend}users/${user?._id}/unfollow`, {
+                  await axios.put(`${backend}/users/${user?._id}/unfollow`, {
                     userId: currentUser._id,
                   });
                   dispatch({ type: "FOLLOW", payload: user?._id });
                 } else {
-                  await axios.put(`${backend}users/${user?._id}/follow`, {
+                  await axios.put(`${backend}/users/${user?._id}/follow`, {
                     userId: currentUser._id,
                   });
                   dispatch({ type: "FOLLOW", payload: user?._id });

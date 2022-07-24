@@ -9,7 +9,7 @@ export const Login = () => {
   const email = useRef();
   const password = useRef();
   const { isFetching, dispatch } = useAuth();
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
 
   return (
     <div className="login">
@@ -28,7 +28,7 @@ export const Login = () => {
               (async () => {
                 dispatch({ type: "LOGIN_START" });
                 try {
-                  const response = await axios.post(`${backend}auth/login`, {
+                  const response = await axios.post(`${backend}/auth/login`, {
                     email: email.current.value,
                     password: password.current.value,
                   });
@@ -56,7 +56,7 @@ export const Login = () => {
               className="loginInput"
               ref={password}
               required
-              minLength="6"
+              minLength="4"
               id="password"
             />
             <button className="loginBtn" type="submit">

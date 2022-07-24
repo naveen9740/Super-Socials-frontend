@@ -11,13 +11,16 @@ import { useAuth } from "../../Context/AuthContext";
 import axios from "axios";
 
 export const Share = () => {
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
 
   const {
     user: { user },
+    setResult,
   } = useAuth();
   const desc = useRef();
   const [file, setFile] = useState(null);
+  const [close, setClose] = useState(true);
+
   return (
     <div className="share">
       <div className="shareWrapper">
@@ -26,8 +29,8 @@ export const Share = () => {
             className="shareProfileImg"
             src={
               user.username
-                ? `https://super-social.netlify.app/${user.profilePicture}`
-                : `https://super-social.netlify.app/assets/person/noCover.png`
+                ? `${process.env.REACT_APP_URL}/${user.profilePicture}`
+                : `${process.env.REACT_APP_URL}/assets/person/noCover.png`
             }
             alt=""
           />
@@ -41,7 +44,12 @@ export const Share = () => {
         {file && (
           <div className="shareImgContainer">
             <img className="shareImg" src={URL.createObjectURL(file)} alt="" />
-            <Cancel onClick={() => setFile(null)} className="shareImgCancel" />
+            <Cancel
+              onClick={() => {
+                setFile(null);
+              }}
+              className="shareImgCancel"
+            />
           </div>
         )}
         <form
@@ -56,18 +64,23 @@ export const Share = () => {
             if (file) {
               const data = new FormData();
               const fileName = file.name;
+              console.log(fileName);
               data.append("file", file);
               data.append("name", fileName);
-              newPost.img = `assets/post/${fileName}`;
+              newPost.img = `assets/post/${
+                Math.floor(Math.random() * 10) + 1
+              }.jpeg`;
               try {
-                await axios.post(`${backend}upload`, data);
+                const result = await axios.post(`${backend}/upload`, data);
+                setResult(result);
               } catch (err) {
                 console.log(err.message);
               }
             }
             try {
-              await axios.post(`${backend}posts/`, newPost);
-              window.location.reload();
+              const result = await axios.post(`${backend}/posts/`, newPost);
+              setResult(result);
+              // window.location.reload();
             } catch (error) {
               console.log({ error: error.message });
             }

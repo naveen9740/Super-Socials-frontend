@@ -6,23 +6,24 @@ import axios from "axios";
 import { useAuth } from "../../Context/AuthContext";
 
 export const Feed = ({ username }) => {
-  const backend = "https://socialmediabackend2.herokuapp.com/";
+  const backend = process.env.REACT_APP_APIURL;
   const {
     user: { user },
+    result,
   } = useAuth();
   const [posts, setPosts] = useState([]);
   useEffect(() => {
     (async () => {
       const response = username
-        ? await axios.get(`${backend}posts/profile/${username}`)
-        : await axios.get(`${backend}posts/timeline/${user._id}`);
+        ? await axios.get(`${backend}/posts/profile/${username}`)
+        : await axios.get(`${backend}/posts/timeline/${user._id}`);
       setPosts(
         response.data.sort(
           (p1, p2) => new Date(p2.createdAt) - new Date(p1.createdAt)
         )
       );
     })();
-  }, [username, user._id]);
+  }, [username, user._id, result]);
 
   return (
     <div className="feed">
